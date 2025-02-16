@@ -1,33 +1,33 @@
 import express from "express";
 import cors from "cors";
-import connectDB from "./config/db"
+import connectDB from "./config/db";
+
 const app = express();
 
+// ✅ Fix CORS to allow requests from frontend
+app.use(cors({
+  origin: "https://quizoooo.vercel.app",
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  credentials: true
+}));
+
+app.use(express.json());
+
+// ✅ Import Routes
 import authRouter from "./routes/auth";
 import quizeRouter from "./routes/quize";
 
-app.use(express.json());
-app.use(cors({
-  origin: "https://quizoooo.vercel.app/",
-  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
-  credentials: true
-}))
+// ✅ Use Routes
+app.use("/api/auth", authRouter);
+app.use("/api/quiz", quizeRouter);
 
-
-const port = process.env.PORT || 5000;
-
-// Use the authentication routes correctly
-app.use("/api", authRouter);
-app.use("/api", quizeRouter);
-
-//  Call the database connection function
+// ✅ Connect Database
 connectDB()
-  .then(() => {
-    app.listen(port, () => {
-      console.log("App is hosted on localhost:" + port);
-    });
-  })
-  .catch((error: unknown) => {
+  .then(() => console.log("✅ Database connected successfully!"))
+  .catch((error) => {
     console.error("❌ Database connection failed:", error);
     process.exit(1);
   });
+
+// ✅ Instead of app.listen(), export app for Vercel
+export default app;
