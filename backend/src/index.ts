@@ -4,9 +4,9 @@ import connectDB from "./config/db";
 
 const app = express();
 
-// ✅ Fix CORS to allow requests from frontend
+// ✅ Enable CORS for frontend access
 app.use(cors({
-  origin: "https://quizoooo.vercel.app",
+  origin: "https://quizoooo.vercel.app",  // Change this if needed
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   credentials: true
 }));
@@ -15,19 +15,21 @@ app.use(express.json());
 
 // ✅ Import Routes
 import authRouter from "./routes/auth";
-import quizeRouter from "./routes/quize";
+import quizRouter from "./routes/quize";
 
-// ✅ Use Routes
-app.use("/api/auth", authRouter);
-app.use("/api/quiz", quizeRouter);
+app.use("/api", authRouter);
+app.use("/api", quizRouter);
 
-// ✅ Connect Database
+// ✅ Connect to Database
 connectDB()
-  .then(() => console.log("✅ Database connected successfully!"))
+  .then(() => console.log("✅ Database Connected!"))
   .catch((error) => {
-    console.error("❌ Database connection failed:", error);
+    console.error("❌ Database Connection Failed:", error);
     process.exit(1);
   });
 
-// ✅ Instead of app.listen(), export app for Vercel
-export default app;
+// ✅ Use `app.listen(PORT)` because Render supports long-running servers
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+});
