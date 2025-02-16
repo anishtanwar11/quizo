@@ -8,7 +8,7 @@ import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const [quizzes, setQuizzes] = useState([]);
+  const [quizzes, setQuizzes] = useState<{ id: number; title: string; description: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -20,6 +20,14 @@ const Dashboard = () => {
         .finally(() => setLoading(false));
     }
   }, [user]);
+  
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-red-500 text-lg">You need to log in first.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-6 sm:p-6 mt-16">
