@@ -16,7 +16,7 @@ The project uses **React (frontend)** and **Node.js + Express with Supabase (bac
 
 ## 📌 Tech Stack  
 **Frontend:** React, TypeScript, Vite, Tailwind CSS, ShadCN  
-**Backend:** Node.js, Express, PostgreSQL (Supabase), Vercel/Render  
+**Backend:** Node.js, Express, PostgreSQL (Supabase)
 
 ---
 
@@ -167,7 +167,7 @@ Response:
 
 🔹 Delete Quiz
 ```sh
-DELETE > http://localhost:5000/quiz/:id
+DELETE > http://localhost:5000/api/quiz/:id
 
 Response:
 {
@@ -185,5 +185,18 @@ Response:
   npm run dev
 ```
 
+Ensure to add the backend URL into Frontend, frontend/src/api.ts
+```sh
+const API_URL = "http://localhost:5000/api";
+```
 
     
+## Screenshots
+
+
+![App Screenshot](https://res.cloudinary.com/drgurmhwb/image/upload/v1739717992/Screenshot_1045_qdkdua.png)
+![App Screenshot](https://res.cloudinary.com/drgurmhwb/image/upload/v1739718005/Screenshot_1046_hk9i8g.png)
+![App Screenshot](https://res.cloudinary.com/drgurmhwb/image/upload/v1739718005/Screenshot_1047_reyblo.png)
+![App Screenshot](https://res.cloudinary.com/drgurmhwb/image/upload/v1739718005/Screenshot_1048_me9j8v.png)
+![App Screenshot](https://res.cloudinary.com/drgurmhwb/image/upload/v1739718006/Screenshot_1049_yj4o0h.png)
+
