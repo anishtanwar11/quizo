@@ -6,8 +6,12 @@ const app = express();
 import authRouter from "./routes/auth";
 import quizeRouter from "./routes/quize";
 
-app.use(cors());
 app.use(express.json());
+app.use(cors({
+  origin: "https://quizoooo.vercel.app/",
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
+  credentials: true
+}))
 
 
 const port = process.env.PORT || 5000;
