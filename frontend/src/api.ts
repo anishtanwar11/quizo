@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://quizo-backend-phi.vercel.app/api";
+const API_URL = "http://localhost:5000/api";
 
 //? User Register
 export const registerUser = async (username: string, password: string) =>{

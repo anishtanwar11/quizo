@@ -1,12 +1,12 @@
 import express from "express";
 import cors from "cors";
-import connectDB from "./config/db";
+import { connectDB } from "./config/db";
 
 const app = express();
 
 // ✅ Enable CORS for frontend access
 app.use(cors({
-  origin: "https://quizoooo.vercel.app",  // Change this if needed
+  origin: "http://localhost:5173",  // Change this if needed
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   credentials: true
 }));

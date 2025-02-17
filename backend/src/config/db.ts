@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // ✅ Use `DATABASE_URL` instead of `DB_HOST`
-export const pool = new Pool({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false } // Required for Supabase connection
 });
@@ -19,4 +19,4 @@ const connectDB = async () => {
   }
 };
 
-export default connectDB;
+export { pool, connectDB};
