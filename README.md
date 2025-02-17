@@ -14,6 +14,12 @@ The project uses **React (frontend)** and **Node.js + Express with Supabase (bac
 
 ---
 
+## 🌍 Live Demo  
+🔹 **Frontend (Vercel):** [https://quizoooo.vercel.app](https://quizoooo.vercel.app)  
+🔹 **Backend API (Render):** [https://quizo-u330.onrender.com](https://quizo-u330.onrender.com)  
+
+---
+
 ## 📌 Tech Stack  
 **Frontend:** React, TypeScript, Vite, Tailwind CSS, ShadCN  
 **Backend:** Node.js, Express, PostgreSQL (Supabase)
