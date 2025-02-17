@@ -6,7 +6,7 @@ const app = express();
 
 // ✅ Enable CORS for frontend access
 app.use(cors({
-  origin: ["http://localhost:5173, https://quizoooo.vercel.app/"],  // Change this if needed
+  origin: "http://localhost:5173, https://quizoooo.vercel.app",  // Change this if needed
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   credentials: true
 }));
