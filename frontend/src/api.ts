@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://quizo-u330.onrender.com/api";
 
 //? User Register
 export const registerUser = async (username: string, password: string) =>{
@@ -16,7 +16,7 @@ export const loginUser = async (username: string, password: string) => {
 
 //? Fetch quizzes only for logged-in teacher
 export const fetchQuizzes = async (teacherId: number) => {
-  const response = await axios.get(`http://localhost:5000/api/quizzes?teacher_id=${teacherId}`);
+  const response = await axios.get(`https://quizo-u330.onrender.com/api/quizzes?teacher_id=${teacherId}`);
   return response.data;
 };
 
