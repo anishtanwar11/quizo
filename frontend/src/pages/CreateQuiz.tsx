@@ -30,18 +30,29 @@ const CreateQuiz = () => {
       setSuccess("Quiz created successfully! Redirecting...");
       setTimeout(() => navigate("/dashboard"), 2000);
     } catch (error: any) {
-      setError(error.response?.data?.message || "An error occurred while creating the quiz.");
+      setError(
+        error.response?.data?.message ||
+          "An error occurred while creating the quiz."
+      );
       console.error("Error creating quiz:", error);
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 ">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 pt-24 pb-8">
       <div className="bg-white p-6 rounded shadow-md w-80">
         <h2 className="text-2xl font-bold mb-4">Create a Quiz</h2>
 
-        {error && <p className="text-red-500 text-sm text-center my-2 border border-red-500 border-dashed rounded-lg py-1">{error}</p>}
-        {success && <p className="text-green-500 text-sm text-center my-2 border border-green-500 border-dashed rounded-lg py-1">{success}</p>}
+        {error && (
+          <p className="text-red-500 text-sm text-center my-2 border border-red-500 border-dashed rounded-lg py-1">
+            {error}
+          </p>
+        )}
+        {success && (
+          <p className="text-green-500 text-sm text-center my-2 border border-green-500 border-dashed rounded-lg py-1">
+            {success}
+          </p>
+        )}
 
         <Input
           type="text"
@@ -57,9 +68,13 @@ const CreateQuiz = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className="w-full p-2 mb-2"
+          rows={15}
         />
 
-        <Button onClick={handleCreateQuiz} className="w-full bg-blue-500 text-white p-2 rounded">
+        <Button
+          onClick={handleCreateQuiz}
+          className="w-full bg-blue-500 text-white p-2 rounded"
+        >
           Create Quiz
         </Button>
       </div>

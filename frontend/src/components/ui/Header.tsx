@@ -16,7 +16,10 @@ const Header = () => {
   return (
     <header className="bg-white shadow-md py-4 px-6 flex justify-between items-center fixed top-0 left-0 right-0">
       {/* Logo */}
-      <Link to={!user ? "/" : "/dashboard"} className="text-2xl font-bold text-blue-600">
+      <Link
+        to={!user ? "/" : "/dashboard"}
+        className="text-2xl font-bold text-blue-600"
+      >
         Quizo
       </Link>
 
@@ -43,7 +46,7 @@ const Header = () => {
               onClick={() => navigate("/create-quiz")}
               className="bg-green-500 text-white hidden sm:flex sm:flex-row"
             >
-               <FaPlus /> Create Quiz
+              <FaPlus /> Create Quiz
             </Button>
             <Button
               onClick={() => {
@@ -55,7 +58,10 @@ const Header = () => {
               <FaSignOutAlt /> Logout
             </Button>
 
-            <button className="sm:hidden text-xl font-semibold" onClick={menuToggle}>
+            <button
+              className="sm:hidden text-xl font-semibold"
+              onClick={menuToggle}
+            >
               {menuOpen ? (
                 <i className="ri-close-line"></i>
               ) : (
@@ -64,7 +70,10 @@ const Header = () => {
             </button>
 
             {menuOpen && (
-              <div className="absolute top-16 left-0 w-full bg-white shadow-md flex flex-col gap-4 p-5 sm:hidden" onClick={menuToggle}>
+              <div
+                className="absolute top-16 left-0 w-full bg-white shadow-md flex flex-col gap-4 p-5 sm:hidden"
+                onClick={menuToggle}
+              >
                 <Link
                   to="/dashboard"
                   className="font-semibold text-center"
@@ -88,10 +97,23 @@ const Header = () => {
                 >
                   <FaSignOutAlt /> Logout
                 </Button>
+                <a
+                  href="https://github.com/anishtanwar11/quizo"
+                  target="_blank"
+                >
+                  <Button className="bg-black w-full  text-white flex justify-center items-center sm:flex sm:flex-row">
+                    <i className="ri-github-fill"></i> Source
+                  </Button>
+                </a>
               </div>
             )}
           </>
         )}
+        <a href="https://github.com/anishtanwar11/quizo" target="_blank">
+          <Button className="bg-black hidden text-white lg:flex justify-center items-center sm:flex sm:flex-row">
+            <i className="ri-github-fill"></i> Source
+          </Button>
+        </a>
       </div>
     </header>
   );

@@ -8,11 +8,13 @@ import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const [quizzes, setQuizzes] = useState<{ id: number; title: string; description: string }[]>([]);
+  const [quizzes, setQuizzes] = useState<
+    { id: number; title: string; description: string }[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // ✅ Fix: Move `useEffect` outside of condition
+  // Fix: Move `useEffect` outside of condition
   useEffect(() => {
     if (user) {
       fetchQuizzes(user.userId)
@@ -20,9 +22,9 @@ const Dashboard = () => {
         .catch(console.error)
         .finally(() => setLoading(false));
     }
-  }, [user]); // ✅ Correct dependency
+  }, [user]); // Correct dependency
 
-  // ✅ Fix: Return early only inside JSX, not before `useEffect`
+  // Fix: Return early only inside JSX, not before `useEffect`
   if (!user) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -43,29 +45,40 @@ const Dashboard = () => {
         <p>Loading...</p>
       ) : quizzes.length === 0 ? (
         <div className="flex flex-col items-center justify-center mt-10">
-          <p className="text-gray-500 text-lg">You haven't created any quizzes yet.</p>
-          <Button onClick={() => navigate("/create-quiz")} className="bg-green-500 text-white mt-4">
+          <p className="text-gray-500 text-lg">
+            You haven't created any quizzes yet.
+          </p>
+          <Button
+            onClick={() => navigate("/create-quiz")}
+            className="bg-green-500 text-white mt-4"
+          >
             <FaPlus /> Create Quiz
           </Button>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {quizzes.map((quiz) => (
-            <Card key={quiz.id}>
+            <Card
+              key={quiz.id}
+              className="justify-between flex flex-col h-full "
+            >
               <CardHeader>
-                <CardTitle>{quiz.title}</CardTitle>
+                <CardTitle className="text-xl">{quiz.title}</CardTitle>
+                <p className="pt-2">{quiz.description}</p>
               </CardHeader>
               <CardContent>
-                <p>{quiz.description}</p>
                 <div className="flex flex-row gap-4 mt-4">
-                  <Button onClick={() => navigate(`/edit/${quiz.id}`)} className="bg-yellow-500">
+                  <Button
+                    onClick={() => navigate(`/edit/${quiz.id}`)}
+                    className="bg-yellow-500"
+                  >
                     <FaEdit /> Edit
                   </Button>
                   <Button
                     variant="destructive"
                     onClick={async () => {
                       await deleteQuiz(quiz.id);
-                      setQuizzes(quizzes.filter((q) => q.id !== quiz.id)); // ✅ Remove quiz from state
+                      setQuizzes(quizzes.filter((q) => q.id !== quiz.id)); //  Remove quiz from state
                     }}
                   >
                     <FaTrash /> Delete

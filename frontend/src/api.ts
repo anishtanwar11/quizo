@@ -1,12 +1,15 @@
 import axios from "axios";
 
-const API_URL = "https://quizo-u330.onrender.com/api";
+const API_URL = "https://quizo-backend-tau.vercel.app/api";
 
 //? User Register
-export const registerUser = async (username: string, password: string) =>{
-    const response = await axios.post(`${API_URL}/register`, {username, password});
-    return response.data;
-}
+export const registerUser = async (username: string, password: string) => {
+  const response = await axios.post(`${API_URL}/register`, {
+    username,
+    password,
+  });
+  return response.data;
+};
 
 //? User Login
 export const loginUser = async (username: string, password: string) => {
@@ -16,7 +19,9 @@ export const loginUser = async (username: string, password: string) => {
 
 //? Fetch quizzes only for logged-in teacher
 export const fetchQuizzes = async (teacherId: number) => {
-  const response = await axios.get(`https://quizo-u330.onrender.com/api/quizzes?teacher_id=${teacherId}`);
+  const response = await axios.get(
+    `https://quizo-backend-tau.vercel.app/api/quizzes?teacher_id=${teacherId}`
+  );
   return response.data;
 };
 
@@ -27,8 +32,16 @@ export const fetchQuizzes = async (teacherId: number) => {
 // };
 
 //? Create Quiz
-export const createQuiz = async (title: string, description: string, teacher_id: number) => {
-  const response = await axios.post(`${API_URL}/quizzes`, { title, description, teacher_id });
+export const createQuiz = async (
+  title: string,
+  description: string,
+  teacher_id: number
+) => {
+  const response = await axios.post(`${API_URL}/quizzes`, {
+    title,
+    description,
+    teacher_id,
+  });
   return response.data;
 };
 
@@ -39,8 +52,15 @@ export const getQuizById = async (id: number) => {
 };
 
 //? Update Quiz
-export const updateQuiz = async (id: number, title: string, description: string) => {
-  const response = await axios.put(`${API_URL}/quizzes/${id}`, { title, description });
+export const updateQuiz = async (
+  id: number,
+  title: string,
+  description: string
+) => {
+  const response = await axios.put(`${API_URL}/quizzes/${id}`, {
+    title,
+    description,
+  });
   return response.data;
 };
 

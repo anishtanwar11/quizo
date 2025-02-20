@@ -15,7 +15,7 @@ const EditQuiz = () => {
 
   useEffect(() => {
     if (!id) return;
-    
+
     const fetchQuiz = async () => {
       try {
         const quiz = await getQuizById(Number(id));
@@ -47,12 +47,20 @@ const EditQuiz = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100  pt-24 pb-8">
       <div className="bg-white p-6 rounded shadow-md w-80">
         <h2 className="text-2xl font-bold mb-4">Edit Quiz</h2>
 
-        {error && <p className="text-red-500 text-sm text-center my-2 border border-red-500 border-dashed rounded-lg py-1">{error}</p>}
-        {success && <p className="text-green-500 text-sm text-center my-2 border border-green-500 border-dashed rounded-lg py-1">{success}</p>}
+        {error && (
+          <p className="text-red-500 text-sm text-center my-2 border border-red-500 border-dashed rounded-lg py-1">
+            {error}
+          </p>
+        )}
+        {success && (
+          <p className="text-green-500 text-sm text-center my-2 border border-green-500 border-dashed rounded-lg py-1">
+            {success}
+          </p>
+        )}
 
         <Input
           type="text"
@@ -68,9 +76,13 @@ const EditQuiz = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className="w-full p-2 mb-2"
+          rows={15}
         />
 
-        <Button onClick={handleUpdateQuiz} className="w-full bg-blue-500 text-white p-2 rounded">
+        <Button
+          onClick={handleUpdateQuiz}
+          className="w-full bg-blue-500 text-white p-2 rounded"
+        >
           Update Quiz
         </Button>
       </div>
